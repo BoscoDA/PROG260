@@ -13,91 +13,44 @@ namespace Fundamentals
         static void Main(string[] args)
         {
             GameInfo gameInfo = new GameInfo();
-            Dictionary<int, Info> Games = new Dictionary<int, Info>();
+            GameInfoParser gameParser = new GameInfoParser();
 
-            foreach (Info info in gameInfo.MetaData)
-            {
-                Games.Add(info.Id, info);
-            }
-
-            //Display number of games
-            Console.WriteLine($"Total games: {Games.Count}\n");
+            //Total number of games
+            Console.WriteLine($"Total games: {gameParser.TotalNumberOfGames(gameInfo)}\n");
 
             //Display most frequent genre
-            Dictionary<string, int> genres = new Dictionary<string, int>();
-            foreach (var game in gameInfo.MetaData)
-            {
-                if (genres.ContainsKey(game.Genre))
-                {
-                    genres[game.Genre]++;
-                }
-                else
-                {
-                    genres.Add(game.Genre, 0);
-                }
-            }
-
-            var MostFreqGenre = genres.OrderByDescending(x => x.Value).ToList();
-            Console.WriteLine($"The most frequent genre is: {MostFreqGenre[0].Key}\n");
+            Console.WriteLine($"The most frequent genre is: {gameParser.MostFrequentGenre(gameInfo)}\n");
 
             //Display which map names have the most number of characters excluding spaces and which game they belong to
-            Console.WriteLine("The maps with the most characters are:\n");
-
-            List<string> mapNames = new List<string>();
-
-            foreach(var game in gameInfo.MetaData)
+            Console.WriteLine("The maps with the most characters are:");
+            Dictionary<string, string> longestMapNames = gameParser.MapsWithLongestNames(gameInfo);
+            foreach (var map in longestMapNames)
             {
-                mapNames.AddRange(game.MapNames.ToList());
-            }
-
-            //sort by length
-            mapNames = mapNames.OrderByDescending(x => RemoveWhiteSpace(x).Length).ToList();
-
-            //find all maps that match the largest element length and print them with the game name
-            foreach (var map in mapNames)
-            {
-                if (RemoveWhiteSpace(map).Length == RemoveWhiteSpace(mapNames.First()).Length)
-                {
-                    var gameMapIsFrom = gameInfo.MetaData.Where(x => x.MapNames.Contains(map)).ToList().First().Name;
-                    Console.WriteLine($"{gameMapIsFrom}: {map}\n");
-                }
+                Console.WriteLine($"- {map.Value}: {map.Key}");
             }
 
             //Display all info as a dictionary
-
-            //simply loop through each element of the dictionary and print
-            foreach (var game in Games)
-            {
-                Console.WriteLine($"ID: {game.Value.Id}");
-                Console.WriteLine($"Name: {game.Value.Name}");
-                Console.WriteLine($"Genre: {game.Value.Genre}");
-                Console.Write("Maps: ");
-                foreach (var map in game.Value.MapNames)
-                {
-                    Console.Write($"{map}, ");
-                }
-                Console.WriteLine("\n");
-            }
+            Console.WriteLine("\nAll game info: ");
+            gameParser.DisplayAllInfo(gameInfo);
 
             //Display map names with letter z in them
-            foreach(var game in Games)
+            Console.Write("\n\nMaps with the letter z: ");
+
+            List<string> mapsWithZ = gameParser.GetAllContainingSequence(gameInfo, "Z");
+
+            for(int i = 0; i < mapsWithZ.Count; i++ ) 
             {
-                foreach(var map in game.Value.MapNames)
+                Console.Write(mapsWithZ[i]);
+
+                if(i < mapsWithZ.Count - 1) 
                 {
-                    //turn map name to upper and check for uppercase "Z", so you can check for z once and get both caes of uppercase and lowercase
-                    if (map.ToUpper().Contains("Z"))
-                    {
-                        Console.WriteLine(map);
-                    }
+                    Console.Write(", ");
                 }
             }
 
             Console.ReadKey();
         }
 
-        static string RemoveWhiteSpace(string input)
-        {
-            return Regex.Replace(input, @"\s+", "");
-        }
+        
     }
 }
