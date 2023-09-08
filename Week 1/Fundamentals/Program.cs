@@ -22,7 +22,7 @@ namespace Fundamentals
             Console.WriteLine($"The most frequent genre is: {gameParser.MostFrequentGenre(gameInfo)}\n");
 
             //Display which map names have the most number of characters excluding spaces and which game they belong to
-            Console.WriteLine("The maps with the most characters are:");
+            Console.WriteLine("The maps with the most number characters excluding spaces are:");
             Dictionary<string, string> longestMapNames = gameParser.MapsWithLongestNames(gameInfo);
             foreach (var map in longestMapNames)
             {
