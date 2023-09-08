@@ -1,0 +1,8 @@
+C:\workspace\src\PROG260\Week 1\Fundamentals\obj\Debug\Fundamentals.csproj.AssemblyReference.cache
+C:\workspace\src\PROG260\Week 1\Fundamentals\obj\Debug\Fundamentals.csproj.SuggestedBindingRedirects.cache
+C:\workspace\src\PROG260\Week 1\Fundamentals\obj\Debug\Fundamentals.csproj.CoreCompileInputs.cache
+C:\workspace\src\PROG260\Week 1\Fundamentals\bin\Debug\Fundamentals.exe.config
+C:\workspace\src\PROG260\Week 1\Fundamentals\bin\Debug\Fundamentals.exe
+C:\workspace\src\PROG260\Week 1\Fundamentals\bin\Debug\Fundamentals.pdb
+C:\workspace\src\PROG260\Week 1\Fundamentals\obj\Debug\Fundamentals.exe
+C:\workspace\src\PROG260\Week 1\Fundamentals\obj\Debug\Fundamentals.pdb
