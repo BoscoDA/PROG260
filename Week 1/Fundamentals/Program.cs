@@ -42,6 +42,18 @@ namespace Fundamentals
 
 
             //Display all info as a dictionary
+            foreach (var game in Games)
+            {
+                Console.WriteLine($"ID: {game.Value.Id}");
+                Console.WriteLine($"Name: {game.Value.Name}");
+                Console.WriteLine($"Genre: {game.Value.Genre}");
+                Console.Write("Maps: ");
+                foreach (var map in game.Value.MapNames)
+                {
+                    Console.Write($"{map}, ");
+                }
+                Console.WriteLine("\n");
+            }
 
             //Display map names with letter z in them
 
