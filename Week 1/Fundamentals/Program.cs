@@ -19,19 +19,19 @@ namespace Fundamentals
             }
 
             //Display number of games
-            
+            Console.WriteLine($"Total games: {Games.Count}\n");
 
             //Display most frequent genre
-            
+
 
             //Display which map names have the most number of characters excluding spaces and which game they belong to
 
 
             //Display all info as a dictionary
-            
-            //Display map names with letter z in them
-            
 
+            //Display map names with letter z in them
+
+            Console.ReadKey();
         }
     }
 }
