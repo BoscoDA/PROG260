@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace Fundamentals
             Console.WriteLine($"The most frequent genre is: {MostFreqGenre[0].Key}\n");
 
             //Display which map names have the most number of characters excluding spaces and which game they belong to
-
+            
 
             //Display all info as a dictionary
             foreach (var game in Games)
@@ -56,6 +57,16 @@ namespace Fundamentals
             }
 
             //Display map names with letter z in them
+            foreach(var game in Games)
+            {
+                foreach(var map in game.Value.MapNames)
+                {
+                    if (map.ToUpper().Contains("Z"))
+                    {
+                        Console.WriteLine(map);
+                    }
+                }
+            }
 
             Console.ReadKey();
         }
