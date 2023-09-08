@@ -51,29 +51,17 @@ namespace Fundamentals
             }
 
             //sort by length
-            mapNames = mapNames.OrderByDescending(x => removeWhiteSpace(x).Length).ToList();
+            mapNames = mapNames.OrderByDescending(x => RemoveWhiteSpace(x).Length).ToList();
+
             //find all maps that match the largest element length and print them with the game name
             foreach (var map in mapNames)
             {
-                if (removeWhiteSpace(map).Length == removeWhiteSpace(mapNames.First()).Length)
+                if (RemoveWhiteSpace(map).Length == RemoveWhiteSpace(mapNames.First()).Length)
                 {
                     var gameMapIsFrom = gameInfo.MetaData.Where(x => x.MapNames.Contains(map)).ToList().First().Name;
                     Console.WriteLine($"{gameMapIsFrom}: {map}\n");
                 }
             }
-            
-            foreach(var game in Games)
-            {
-                for(int i = 0; i < game.Value.MapNames.Length; i++)
-                {
-                    var noWhiteSpace = new string(game.Value.MapNames[i].Where(x => !Char.IsWhiteSpace(x)).ToArray());
-                    game.Value.MapNames[i] = noWhiteSpace;
-                }
-
-                game.Value.MapNames.OrderBy(x => x.Length);
-            }
-
-
 
             //Display all info as a dictionary
 
@@ -107,7 +95,7 @@ namespace Fundamentals
             Console.ReadKey();
         }
 
-        static string removeWhiteSpace(string input)
+        static string RemoveWhiteSpace(string input)
         {
             return Regex.Replace(input, @"\s+", "");
         }
