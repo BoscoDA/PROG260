@@ -1,0 +1,12 @@
+# Ignore vim files:
+*~
+*.swp
+*.swo
+.*.sw
+*.md~
+
+# Ignore hidden folder for asp.net apps
+*.vs
+
+bin/
+Debug/
