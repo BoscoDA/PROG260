@@ -35,11 +35,13 @@
             this.lb_filepaths = new System.Windows.Forms.ListBox();
             this.btn_remove = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_parse
             // 
-            this.btn_parse.Location = new System.Drawing.Point(12, 245);
+            this.btn_parse.Location = new System.Drawing.Point(12, 254);
             this.btn_parse.Name = "btn_parse";
             this.btn_parse.Size = new System.Drawing.Size(75, 23);
             this.btn_parse.TabIndex = 0;
@@ -49,7 +51,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 78);
+            this.textBox1.Location = new System.Drawing.Point(12, 55);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(223, 20);
             this.textBox1.TabIndex = 1;
@@ -57,14 +59,14 @@
             // lb_output
             // 
             this.lb_output.FormattingEnabled = true;
-            this.lb_output.Location = new System.Drawing.Point(430, 75);
+            this.lb_output.Location = new System.Drawing.Point(419, 55);
             this.lb_output.Name = "lb_output";
             this.lb_output.Size = new System.Drawing.Size(345, 290);
             this.lb_output.TabIndex = 2;
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(241, 76);
+            this.btn_add.Location = new System.Drawing.Point(250, 53);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(56, 23);
             this.btn_add.TabIndex = 3;
@@ -75,14 +77,14 @@
             // lb_filepaths
             // 
             this.lb_filepaths.FormattingEnabled = true;
-            this.lb_filepaths.Location = new System.Drawing.Point(12, 105);
+            this.lb_filepaths.Location = new System.Drawing.Point(12, 114);
             this.lb_filepaths.Name = "lb_filepaths";
             this.lb_filepaths.Size = new System.Drawing.Size(294, 134);
             this.lb_filepaths.TabIndex = 4;
             // 
             // btn_remove
             // 
-            this.btn_remove.Location = new System.Drawing.Point(303, 75);
+            this.btn_remove.Location = new System.Drawing.Point(312, 52);
             this.btn_remove.Name = "btn_remove";
             this.btn_remove.Size = new System.Drawing.Size(56, 23);
             this.btn_remove.TabIndex = 5;
@@ -92,7 +94,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(231, 245);
+            this.button4.Location = new System.Drawing.Point(231, 254);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 6;
@@ -100,11 +102,37 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.btn_clear_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.AcceptsReturn = true;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBox2.Location = new System.Drawing.Point(12, 36);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(122, 13);
+            this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "Enter a filepath below.";
+            // 
+            // textBox3
+            // 
+            this.textBox3.AcceptsReturn = true;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBox3.Location = new System.Drawing.Point(12, 95);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(122, 13);
+            this.textBox3.TabIndex = 8;
+            this.textBox3.Text = "Files to be parsed";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btn_remove);
             this.Controls.Add(this.lb_filepaths);
@@ -128,6 +156,8 @@
         private System.Windows.Forms.ListBox lb_filepaths;
         private System.Windows.Forms.Button btn_remove;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
