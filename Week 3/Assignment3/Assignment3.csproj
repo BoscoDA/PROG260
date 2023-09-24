@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <None Update="Riddles.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Stats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
