@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -22,14 +23,59 @@ namespace Assignment4
 
         public void ParseFiles(string directoryPath)
         {
+            Console.WriteLine($"Processing files...{Environment.NewLine}");
+
             List<string> files = GetFilesToProcess(directoryPath);
-            GenerateFiles(files);
-            engine.ProcessFiles(filesToProcess);
+
+            if(errors.Count == 0)
+            {
+                GenerateFiles(files);
+            }
+
+            if(errors.Count == 0)
+            {
+                errors = engine.ProcessFiles(filesToProcess);
+            }
+
+            if (errors.Count > 0)
+            {
+                Console.WriteLine("File process unsuccessful!");
+                foreach (var error in errors)
+                {
+                    Console.WriteLine($"Error Message: {error.message}. Error Source: {error.source}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Files processed successfully!");
+            }
         }
 
         private List<string> GetFilesToProcess(string directoryPath)
         {
-            var files = Directory.GetFiles(directoryPath).Where(x => !x.Contains("_out")).ToList();
+            List<string> files = new List<string>();
+
+            try
+            {
+                files = Directory.GetFiles(directoryPath).Where(x => !x.Contains("_out")).ToList();
+            }
+            catch(IOException ex)
+            {
+                errors.Add(new Error(ex.Message, "Parser.GetFilesToProcess()"));
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                errors.Add(new Error(ex.Message, "Parser.GetFilesToProcess()"));
+            }
+            catch (ArgumentException ex)
+            {
+                errors.Add(new Error(ex.Message, "Parser.GetFilesToProcess()"));
+            }
+            catch(Exception ex)
+            {
+                errors.Add(new Error(ex.Message, "Parser.GetFilesToProcess()"));
+            }
+            
             return files;
         }
 
@@ -46,6 +92,11 @@ namespace Assignment4
                 {
                     MyFile tempFile = new MyFile(file, ',', ".csv");
                     filesToProcess.Add(tempFile);
+                }
+                else
+                {
+                    errors.Add(new Error($"Invalid file extenstion processed: {file.Substring(file.LastIndexOf('.'))}", "Parser.GenerateFiles()"));
+                    break;
                 }
             }
         }

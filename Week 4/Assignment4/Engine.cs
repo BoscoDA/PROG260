@@ -9,8 +9,9 @@ namespace Assignment4
 {
     internal class Engine
     {
-        public void ProcessFiles(List<IDelimiterFile> filesToProcess)
+        public List<Error> ProcessFiles(List<IDelimiterFile> filesToProcess)
         {
+            List<Error> errors = new List<Error>();
             try
             {
                 foreach (var file in filesToProcess)
@@ -59,12 +60,14 @@ namespace Assignment4
             }
             catch (IOException exception)
             {
-
+                errors.Add(new Error(exception.Message, "Engine.ProcessFiles()"));
             }
             catch(Exception exception)
             {
-
+                errors.Add(new Error(exception.Message, "Engine.ProcessFiles()"));
             }
+
+            return errors;
         }
     }
 }
