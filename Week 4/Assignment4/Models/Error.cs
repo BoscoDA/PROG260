@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment4
+namespace Assignment4.Models
 {
     public class Error
     {
-        public string message {  get; set; }
+        public string message { get; set; }
         public string source { get; set; }
 
         public Error(string message, string source)

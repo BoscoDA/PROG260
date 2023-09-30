@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Assignment4.Models;
 
 namespace Assignment4
 {
@@ -21,6 +21,10 @@ namespace Assignment4
             engine = new Engine();
         }
 
+        /// <summary>
+        /// Process all pipe and csv files in the inputted directory
+        /// </summary>
+        /// <param name="directoryPath">Path to the file directory to be parsed</param>
         public void ParseFiles(string directoryPath)
         {
             Console.WriteLine($"Processing files...{Environment.NewLine}");
@@ -51,6 +55,11 @@ namespace Assignment4
             }
         }
 
+        /// <summary>
+        /// Makes a list of all files in the inputted directory.
+        /// </summary>
+        /// <param name="directoryPath">Target directory path.</param>
+        /// <returns>A list of type string with all file paths in the input directory.</returns>
         private List<string> GetFilesToProcess(string directoryPath)
         {
             List<string> files = new List<string>();
@@ -79,6 +88,10 @@ namespace Assignment4
             return files;
         }
 
+        /// <summary>
+        /// From a list of file paths, generates objects of type MyFile and adds them to the FileeToProcess list.
+        /// </summary>
+        /// <param name="files">List of files paths to be turned into MyFile Objects</param>
         private void GenerateFiles(List<string> files)
         {
             foreach (var file in files)

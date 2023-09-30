@@ -5,10 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment4
+namespace Assignment4.Models
 {
     internal class Engine
     {
+
+        /// <summary>
+        /// Takes in a list of type IDelimiterFile and sequentially processes them to a output file 
+        /// </summary>
+        /// <param name="filesToProcess">List of IDelimiterFile objects to be processed</param>
+        /// <returns></returns>
         public List<Error> ProcessFiles(List<IDelimiterFile> filesToProcess)
         {
             List<Error> errors = new List<Error>();
@@ -62,7 +68,7 @@ namespace Assignment4
             {
                 errors.Add(new Error(exception.Message, "Engine.ProcessFiles()"));
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 errors.Add(new Error(exception.Message, "Engine.ProcessFiles()"));
             }
