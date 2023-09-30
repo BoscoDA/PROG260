@@ -16,7 +16,7 @@ namespace Assignment4
             {
                 foreach (var file in filesToProcess)
                 {
-                    string outputFilePath = file.Path.Replace(file.FileExtension, $"_out.txt");
+                    string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
 
                     if (File.Exists(outputFilePath))
                     {

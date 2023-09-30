@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            string dir = @".\File\";
+            string dir = @".\Files\";
             Parser parser = new Parser();
             
             parser.ParseFiles(dir);

@@ -83,14 +83,14 @@ namespace Assignment4
         {
             foreach (var file in files)
             {
-                if (file.EndsWith(".txt"))
+                if (file.EndsWith(Constants.FileExtensions.PIPE))
                 {
-                    MyFile tempFile = new MyFile(file, '|', ".txt");
+                    MyFile tempFile = new MyFile(file, Constants.FileDelimieters.PIPE, Constants.FileExtensions.PIPE);
                     filesToProcess.Add(tempFile);
                 }
-                else if (file.EndsWith(".csv"))
+                else if (file.EndsWith(Constants.FileExtensions.CSV))
                 {
-                    MyFile tempFile = new MyFile(file, ',', ".csv");
+                    MyFile tempFile = new MyFile(file, Constants.FileDelimieters.CSV, Constants.FileExtensions.CSV);
                     filesToProcess.Add(tempFile);
                 }
                 else
