@@ -51,6 +51,10 @@ namespace Assignment5
                             engine = new DelimiterEngine();
                             errors.AddRange(engine.ProcessFiles(file));
                             break;
+                        case ".json":
+                            engine = new JSONEngine();
+                            errors.AddRange(engine.ProcessFiles(file));
+                            break;
                         default:
                             break;
                     }
