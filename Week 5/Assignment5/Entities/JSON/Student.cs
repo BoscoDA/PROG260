@@ -24,4 +24,10 @@ namespace Assignment5.Entities.JSON
         public PhoneNumber Address2 { get; set; }
         [JsonPropertyName("phoneNumbers")]
         public List<PhoneNumber> PhoneNumbers { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FIrstName} {LastName}";
+        }
     }
+}
