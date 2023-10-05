@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Files\SampleCSV.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
