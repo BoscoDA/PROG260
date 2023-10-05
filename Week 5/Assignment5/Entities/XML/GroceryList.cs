@@ -8,9 +8,10 @@ using System.Xml.Serialization;
 namespace Assignment5.Entities.XML
 {
     [XmlRoot(ElementName = "menu")]
-    internal class GroceryList
+    public class GroceryList
     {
         [XmlElement(ElementName = "item")]
-        List<GroceryItem> GroceryItems = new List<GroceryItem>();
+        public List<GroceryItem> GroceryItems = new List<GroceryItem>();
+
     }
 }

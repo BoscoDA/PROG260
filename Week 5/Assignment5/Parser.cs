@@ -55,6 +55,10 @@ namespace Assignment5
                             engine = new JSONEngine();
                             errors.AddRange(engine.ProcessFiles(file));
                             break;
+                        case ".xml":
+                            engine = new XMLEngine();
+                            errors.AddRange(engine.ProcessFiles(file));
+                            break;
                         default:
                             break;
                     }
