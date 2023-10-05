@@ -7,62 +7,60 @@ using System.Threading.Tasks;
 
 namespace Assignment5.Engines
 {
-    internal class Engine
+    public abstract class BaseEngine
     {
-
         /// <summary>
-        /// Takes in a list of type IDelimiterFile and sequentially processes them to a output file 
+        /// Takes in a list of type IFile and sequentially processes them to a output file 
         /// </summary>
-        /// <param name="filesToProcess">List of IDelimiterFile objects to be processed</param>
+        /// <param name="filesToProcess">List of IFile objects to be processed</param>
         /// <returns></returns>
-        public List<Error> ProcessFiles(List<IFile> filesToProcess)
+        internal virtual List<Error> ProcessFiles(IFile file)
         {
             List<Error> errors = new List<Error>();
+
             try
             {
-                foreach (var file in filesToProcess)
+                string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
+
+                if (File.Exists(outputFilePath))
                 {
-                    string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
+                    File.Delete(outputFilePath);
+                }
 
-                    if (File.Exists(outputFilePath))
+                using (StreamReader sr = new StreamReader(file.Path))
+                {
+                    using (StreamWriter sw = new StreamWriter(outputFilePath))
                     {
-                        File.Delete(outputFilePath);
-                    }
-
-                    using (StreamReader sr = new StreamReader(file.Path))
-                    {
-                        using (StreamWriter sw = new StreamWriter(outputFilePath))
+                        var line = sr.ReadLine();
+                        var lineCount = 0;
+                        while (line != null)
                         {
-                            var line = sr.ReadLine();
-                            var lineCount = 0;
-                            while (line != null)
+                            lineCount++;
+                            sw.Write($"Line #{lineCount} :");
+                            var fields = line.Split(file.Delimiter);
+                            var fieldCount = 0;
+                            foreach (var field in fields)
                             {
-                                lineCount++;
-                                sw.Write($"Line #{lineCount} :");
-                                var fields = line.Split(file.Delimiter);
-                                var fieldCount = 0;
-                                foreach (var field in fields)
+                                fieldCount++;
+                                sw.Write($"Field #{fieldCount} = {field}");
+                                if (fieldCount - 1 < fields.Count() - 1)
                                 {
-                                    fieldCount++;
-                                    sw.Write($"Field #{fieldCount} = {field}");
-                                    if (fieldCount - 1 < fields.Count() - 1)
-                                    {
 
-                                        sw.Write(" ==> ");
-                                    }
-                                    else
-                                    {
-                                        sw.Write($"{Environment.NewLine}");
-                                    }
+                                    sw.Write(" ==> ");
                                 }
-
-                                sw.Write($"{Environment.NewLine}");
-                                line = sr.ReadLine();
-
+                                else
+                                {
+                                    sw.Write($"{Environment.NewLine}");
+                                }
                             }
+
+                            sw.Write($"{Environment.NewLine}");
+                            line = sr.ReadLine();
+
                         }
                     }
                 }
+
             }
             catch (IOException exception)
             {

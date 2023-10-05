@@ -4,7 +4,12 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            string dir = @".\Files\";
+            Parser parser = new Parser();
+
+            parser.ParseFiles(dir);
+
+            Console.ReadKey();
         }
     }
 }

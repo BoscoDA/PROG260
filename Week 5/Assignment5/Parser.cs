@@ -12,13 +12,12 @@ namespace Assignment5
     {
         List<IFile> filesToProcess { get; set; }
         List<Error> errors { get; set; }
-        Engine engine { get; set; }
+        BaseEngine engine { get; set; }
 
         public Parser()
         {
             filesToProcess = new List<IFile>();
             errors = new List<Error>();
-            engine = new Engine();
         }
 
         /// <summary>
@@ -39,7 +38,23 @@ namespace Assignment5
             if (errors.Count == 0)
             {
                 //loop thorough files here and switch based on file extension
-                errors = engine.ProcessFiles(filesToProcess);
+                //errors = engine.ProcessFiles(filesToProcess);
+                foreach(var file in filesToProcess)
+                {
+                    switch (file.FileExtension)
+                    {
+                        case ".txt":
+                            engine = new DelimiterEngine();
+                            errors.AddRange(engine.ProcessFiles(file));
+                            break;
+                        case ".csv":
+                            engine = new DelimiterEngine();
+                            errors.AddRange(engine.ProcessFiles(file));
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
 
             if (errors.Count > 0)
@@ -99,12 +114,22 @@ namespace Assignment5
             {
                 if (file.EndsWith(Constants.FileExtensions.PIPE))
                 {
-                    MyFile tempFile = new MyFile(file, Constants.FileDelimieters.PIPE, Constants.FileExtensions.PIPE);
+                    MyFile tempFile = new MyFile(file, Constants.FileExtensions.PIPE, Constants.FileDelimieters.PIPE);
                     filesToProcess.Add(tempFile);
                 }
                 else if (file.EndsWith(Constants.FileExtensions.CSV))
                 {
-                    MyFile tempFile = new MyFile(file, Constants.FileDelimieters.CSV, Constants.FileExtensions.CSV);
+                    MyFile tempFile = new MyFile(file, Constants.FileExtensions.CSV, Constants.FileDelimieters.CSV);
+                    filesToProcess.Add(tempFile);
+                }
+                else if(file.EndsWith(Constants.FileExtensions.JSON))
+                {
+                    MyFile tempFile = new MyFile(file, Constants.FileExtensions.JSON);
+                    filesToProcess.Add(tempFile);
+                }
+                else if (file.EndsWith(Constants.FileExtensions.XML))
+                {
+                    MyFile tempFile = new MyFile(file, Constants.FileExtensions.XML);
                     filesToProcess.Add(tempFile);
                 }
                 else
