@@ -15,5 +15,10 @@ namespace Assignment5.Entities.JSON
         public string Number { get; set; }
         [JsonPropertyName("CanContact")]
         public bool CanContact { get; set; }
+
+        public override string ToString()
+        {
+            return $"Type: {Type}{Environment.NewLine}Number: {Number}{Environment.NewLine}Can Contact: {CanContact}";
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace Assignment5.Entities.JSON
         public string State { get; set; }
         [JsonPropertyName("postalCode")]
         public string PostalCode { get; set; }
+
+        public override string ToString()
+        {
+            return $"{StreetAddress} {City}, {State} {PostalCode}";
+        }
     }
 }
