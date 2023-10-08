@@ -20,12 +20,7 @@ namespace Assignment5.Engines
 
             try
             {
-                string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
-
-                if (File.Exists(outputFilePath))
-                {
-                    File.Delete(outputFilePath);
-                }
+                string outputFilePath = GenerateOutputFile(file);
 
                 using (StreamReader sr = new StreamReader(file.Path))
                 {
@@ -72,6 +67,18 @@ namespace Assignment5.Engines
             }
 
             return errors;
+        }
+
+        internal string GenerateOutputFile(IFile file)
+        {
+            string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
+
+            if (File.Exists(outputFilePath))
+            {
+                File.Delete(outputFilePath);
+            }
+
+            return outputFilePath;
         }
     }
 }

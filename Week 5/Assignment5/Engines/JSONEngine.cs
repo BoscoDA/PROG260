@@ -17,12 +17,7 @@ namespace Assignment5.Engines
 
             try
             {
-                string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
-
-                if (File.Exists(outputFilePath))
-                {
-                    File.Delete(outputFilePath);
-                }
+                string outputFilePath = GenerateOutputFile(file);
 
                 using (StreamReader sr = new StreamReader(file.Path))
                 {
@@ -30,7 +25,7 @@ namespace Assignment5.Engines
 
                     using (StreamWriter sw = new StreamWriter(outputFilePath))
                     {
-                        sw.WriteLine($"Line #1: {myStudent.ToString()}");
+                        sw.WriteLine($"Student #1: {myStudent.ToString()}");
                     }
                 }
 
