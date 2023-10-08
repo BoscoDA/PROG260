@@ -9,6 +9,7 @@
 
             parser.ParseFiles(dir);
 
+            Console.WriteLine($"{Environment.NewLine}Press any key to exit...");
             Console.ReadKey();
         }
     }
