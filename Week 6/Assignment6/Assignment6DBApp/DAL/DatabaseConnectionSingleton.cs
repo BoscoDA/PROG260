@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment6DBApp
+namespace Assignment6DBApp.DAL
 {
     internal class DatabaseConnectionSingleton
     {

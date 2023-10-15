@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment6DBApp
+namespace Assignment6DBApp.DAL
 {
     public class ProduceDAL
     {
@@ -77,6 +77,31 @@ namespace Assignment6DBApp
                 }
                 conn.Close();
             }
+        }
+
+        public List<Produce> SelectAllProduce()
+        {
+            List<Produce> output = new List<Produce>();
+
+            using (SqlConnection conn = new SqlConnection(sqlConnectString))
+            {
+                conn.Open();
+                string inlineSQL = @"SELECT * FROM Produce";
+                using (var command = new SqlCommand(inlineSQL, conn))
+                {
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Produce value = new Produce((string)reader.GetValue(1), (string)reader.GetValue(2), (decimal)reader.GetValue(3), (string)reader.GetValue(4), (DateTime)reader.GetValue(5));
+                        output.Add(value);
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+
+            return output;
         }
     }
 }

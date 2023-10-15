@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using Assignment6DBApp.DAL;
 
 namespace Assignment6DBApp
 {
@@ -6,51 +7,17 @@ namespace Assignment6DBApp
     {
         static void Main(string[] args)
         {
-            ProduceDAL produceDAL = new ProduceDAL();
+            //Read Produce file and create produce object list
 
-            List<Produce> Produce = new List<Produce>();
+            //DATABASE STUFF
 
-            using (StreamReader sr = new StreamReader("./Produce.txt"))
-            {
-                var line = sr.ReadLine();
-                if (line.StartsWith("Name,"))
-                {
-                    line = sr.ReadLine();
-                }
+            //Read DATABASE to txt file
+            string dir = @".\Files\";
+            Parser parser = new Parser();
 
-                while (line != null)
-                {
-                    var props = line.Split('|');
+            parser.ParseFiles(dir);
 
-                    string name = props[0];
-                    string location = props[1];
-                    decimal price = Convert.ToDecimal(props[2]);
-                    string uom = props[3];
-                    var temp = props[4].Split("-");
-                    DateTime sellBy = new DateTime(Int32.Parse(temp[2]), Int32.Parse(temp[0]), Int32.Parse(temp[1]));
-
-                    Produce.Add(new Produce(name, location, price, uom, sellBy));
-
-                    line = sr.ReadLine();
-                }
-            }
-
-            //Insert items from Produce.txt into DB
-            foreach(var produce in Produce)
-            {
-                produceDAL.InsertProduce(produce);
-            }
-
-            //Update all location that end with F to Z
-            produceDAL.UpdateLocation();
-
-            //Delete all items passed sell by date
-            produceDAL.DeleteProduceSellByDatePassed();
-
-            //Increase all prices by $1
-            produceDAL.IncrementAllPrices();
-
-            Console.WriteLine("Press any key to exit...");
+            Console.WriteLine($"{Environment.NewLine}Press any key to exit...");
             Console.ReadKey();
         }
     }

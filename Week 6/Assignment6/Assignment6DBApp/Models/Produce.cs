@@ -22,5 +22,10 @@ namespace Assignment6DBApp
             UoM = uoM;
             SellByDate = sellByDate;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}|{Location}|{Price.ToString("0.00")}|{UoM}|{SellByDate.ToString("MM-dd-yyyy")}";
+        }
     }
 }
