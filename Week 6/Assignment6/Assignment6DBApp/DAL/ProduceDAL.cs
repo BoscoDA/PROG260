@@ -47,7 +47,7 @@ namespace Assignment6DBApp.DAL
             {
                 conn.Open();
 
-                string inlineSQL = @$"UPDATE Produce Set Location = REPLACE(Location, 'F', 'Z') WHERE Produce.Location LIKE '%F'";
+                string inlineSQL = @$"UPDATE Produce Set Location = REPLACE(Location, 'F', 'Z')";
                 using (var command = new SqlCommand(inlineSQL, conn))
                 {
                     var query = command.ExecuteNonQuery();
