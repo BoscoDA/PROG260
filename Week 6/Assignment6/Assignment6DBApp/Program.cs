@@ -6,24 +6,19 @@ namespace Assignment6DBApp
     {
         static void Main(string[] args)
         {
-            SqlConnectionStringBuilder mySqlConBldr = new SqlConnectionStringBuilder();
-            mySqlConBldr["server"] = @"(localdb)\MSSQLLocalDB";
-            mySqlConBldr["Trusted_Connection"] = true;
-            mySqlConBldr["Integrated Security"] = "SSPI";
-            mySqlConBldr["Initial Catalog"] = "PROG260FA23";
-            string sqlConStr = mySqlConBldr.ToString();
+            ProduceDAL produceDAL = new ProduceDAL();
 
             List<Produce> Produce = new List<Produce>();
 
-            using(StreamReader sr = new StreamReader("./Produce.txt"))
+            using (StreamReader sr = new StreamReader("./Produce.txt"))
             {
                 var line = sr.ReadLine();
-                if(line.StartsWith("Name,"))
+                if (line.StartsWith("Name,"))
                 {
                     line = sr.ReadLine();
                 }
 
-                while(line != null)
+                while (line != null)
                 {
                     var props = line.Split('|');
 
@@ -32,7 +27,7 @@ namespace Assignment6DBApp
                     decimal price = Convert.ToDecimal(props[2]);
                     string uom = props[3];
                     var temp = props[4].Split("-");
-                    DateTime sellBy = new DateTime(Int32.Parse(temp[2]), Int32.Parse( temp[0]), Int32.Parse(temp[1]) );
+                    DateTime sellBy = new DateTime(Int32.Parse(temp[2]), Int32.Parse(temp[0]), Int32.Parse(temp[1]));
 
                     Produce.Add(new Produce(name, location, price, uom, sellBy));
 
@@ -41,21 +36,19 @@ namespace Assignment6DBApp
             }
 
             //Insert items from Produce.txt into DB
-            using (SqlConnection conn = new SqlConnection(sqlConStr))
+            foreach(var produce in Produce)
             {
-                conn.Open();
-
-
-                foreach (var produce in Produce)
-                {
-                    string inlineSQL = @$"INSERT [dbo].[Produce] ([Name], [Location], [Price], [UoM], [Sell_by_Date]) Values('{produce.Name}', '{produce.Location}', {produce.Price}, '{produce.UoM}', '{produce.SellByDate.ToString("MM-dd-yyyy")}')";
-                    using (var command = new SqlCommand(inlineSQL, conn))
-                    {
-                        var query = command.ExecuteNonQuery();
-                    }
-                }
-                conn.Close();
+                produceDAL.InsertProduce(produce);
             }
+
+            //Update all location that end with F to Z
+            produceDAL.UpdateLocation();
+
+            //Delete all items passed sell by date
+            produceDAL.DeleteProduceSellByDatePassed();
+
+            //Increase all prices by $1
+            produceDAL.IncrementAllPrices();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
