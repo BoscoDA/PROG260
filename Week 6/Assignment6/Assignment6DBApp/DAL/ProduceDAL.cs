@@ -47,6 +47,7 @@ namespace Assignment6DBApp.DAL
             {
                 conn.Open();
 
+                //Learned from: https://www.w3schools.com/sql/func_sqlserver_replace.asp
                 string inlineSQL = @$"UPDATE Produce Set Location = REPLACE(Location, 'F', 'Z')";
                 using (var command = new SqlCommand(inlineSQL, conn))
                 {
