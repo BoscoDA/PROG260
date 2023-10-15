@@ -18,6 +18,10 @@ namespace Assignment6DBApp.DAL
             sqlConnectString = connectionSingleton.PrepareDBConnection();
         }
 
+        /// <summary>
+        /// Inserts provided produce obejct into the database.
+        /// </summary>
+        /// <param name="produce">Produce object to be added to database</param>
         public void InsertProduce(Produce produce)
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -34,6 +38,9 @@ namespace Assignment6DBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Updates all records with locations ending with "F" to end with "Z"
+        /// </summary>
         public void UpdateLocation()
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -49,6 +56,9 @@ namespace Assignment6DBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Deletes all records from database that are passed their sell by date
+        /// </summary>
         public void DeleteProduceSellByDatePassed()
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -64,6 +74,9 @@ namespace Assignment6DBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Increments all records price by $1
+        /// </summary>
         public void IncrementAllPrices()
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -79,6 +92,10 @@ namespace Assignment6DBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Gets all produce records from database
+        /// </summary>
+        /// <returns>List of Produce objects</returns>
         public List<Produce> SelectAllProduce()
         {
             List<Produce> output = new List<Produce>();

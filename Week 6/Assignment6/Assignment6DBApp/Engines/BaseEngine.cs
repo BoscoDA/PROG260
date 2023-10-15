@@ -17,6 +17,11 @@ namespace Assignment6DBApp.Engines
             produceDAL = new ProduceDAL();
         }
 
+        /// <summary>
+        /// Reads in given file then preforms need database manipulations and then writes database to output file
+        /// </summary>
+        /// <param name="file">Input file</param>
+        /// <returns>List of type Error</returns>
         internal virtual List<Error> ProcessFile(IFile file)
         {
             List<Error> errors = new List<Error>();
@@ -50,6 +55,11 @@ namespace Assignment6DBApp.Engines
             return errors;
         }
 
+        /// <summary>
+        /// Generates output file path
+        /// </summary>
+        /// <param name="file">Input file</param>
+        /// <returns>Output file path</returns>
         internal string GenerateOutputFile(IFile file)
         {
             string outputFilePath = file.Path.Replace(file.FileExtension, $"_out{Constants.FileExtensions.TEXT}");
@@ -62,6 +72,11 @@ namespace Assignment6DBApp.Engines
             return outputFilePath;
         }
 
+        /// <summary>
+        /// Reads file and generates produce objects from that data
+        /// </summary>
+        /// <param name="file">File with produce objects to be parsed</param>
+        /// <returns>List of type Produce</returns>
         internal virtual List<Produce> GenerateProduce(IFile file)
         {
             List<Produce> Produce = new List<Produce>();
@@ -93,6 +108,11 @@ namespace Assignment6DBApp.Engines
             return Produce;
         }
 
+        /// <summary>
+        /// Runs all SQL commands need to maintain Produce table
+        /// </summary>
+        /// <param name="produce">List of Produce objects</param>
+        /// <returnsList all records from the table remaining after the commands run></returns>
         internal List<Produce> RunSQL(List<Produce> produce)
         {
             //Insert items from Produce.txt into DB
