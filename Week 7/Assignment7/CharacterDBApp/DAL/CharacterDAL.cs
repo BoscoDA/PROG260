@@ -19,6 +19,10 @@ namespace CharacterDBApp.DAL
             sqlConnectString = connectionSingleton.PrepareDBConnection();
         }
 
+        /// <summary>
+        /// Inserts input string into the type table
+        /// </summary>
+        /// <param name="type">type name</param>
         public void InsertType(string type)
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -35,6 +39,10 @@ namespace CharacterDBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Inserts input string into the location db table
+        /// </summary>
+        /// <param name="location">location name to be inputted</param>
         public void InsertLocation(string location)
         {
             using (SqlConnection conn = new SqlConnection(sqlConnectString))
@@ -55,6 +63,10 @@ namespace CharacterDBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Inserts the inputted character object into the character db table
+        /// </summary>
+        /// <param name="character"></param>
         public void InsertCharacter(Character character)
         {
             string typeID = GetTypeIDFromTypeName(character.Type);
@@ -92,6 +104,11 @@ namespace CharacterDBApp.DAL
             }
         }
 
+        /// <summary>
+        /// Gets the type id of the inputted string from the type table.
+        /// </summary>
+        /// <param name="typeName">Desired type name of desired id</param>
+        /// <returns>Returns string of id number or null</returns>
         public string GetTypeIDFromTypeName(string typeName)
         {
             string typeID = string.Empty;
@@ -124,6 +141,11 @@ namespace CharacterDBApp.DAL
             return typeID;
         }
 
+        /// <summary>
+        /// Gets the location id of the inputted string from the location table
+        /// </summary>
+        /// <param name="locationName">Desired location name of the desired id</param>
+        /// <returns>Returns string of id number or null</returns>
         public string GetLocationIDFromLocationName(string locationName)
         {
             string locationID = string.Empty;
@@ -162,6 +184,10 @@ namespace CharacterDBApp.DAL
             return locationID;
         }
 
+        /// <summary>
+        /// Gathers all records in the character that are not human and can use swords
+        /// </summary>
+        /// <returns>List of character names</returns>
         public List<string> FindNotHumansThatAreSwordUsers()
         {
             List<string> results = new List<string>();
@@ -187,6 +213,10 @@ namespace CharacterDBApp.DAL
             return results;
         }
 
+        /// <summary>
+        /// Gathers all records of characters that do no have a location
+        /// </summary>
+        /// <returns>List of character names</returns>
         public List<string> FindCharactersWithNoLocation()
         {
             List<string> results = new List<string>();
@@ -212,6 +242,10 @@ namespace CharacterDBApp.DAL
             return results;
         }
 
+        /// <summary>
+        /// Gathers all records of characters with full information
+        /// </summary>
+        /// <returns>List of characters with full info</returns>
         public List<Character> FindAllFullCharacters()
         {
             List<Character> results = new List<Character>();

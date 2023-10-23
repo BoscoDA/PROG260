@@ -16,6 +16,11 @@ namespace CharacterDBApp.Engines
         {
             cDAL = new CharacterDAL();
         }
+        /// <summary>
+        /// Parses and inputs provied file into the database and then creates desired reports
+        /// </summary>
+        /// <param name="file">File to be parsed</param>
+        /// <returns>List of erros that occured</returns>
         internal virtual List<Error> ProcessFile(IFile file)
         {
             List<Error> errors = new List<Error>();
@@ -41,6 +46,11 @@ namespace CharacterDBApp.Engines
 
             return errors;
         }
+        /// <summary>
+        /// Gets all unquie location names from the inputted character list
+        /// </summary>
+        /// <param name="characters">List of characters you want the location from</param>
+        /// <returns>List of unique location names</returns>
         private List<string> GenerateLocationsFromCharacters(List<Character> characters)
         {
             List<string> locations = new List<string>();
@@ -55,6 +65,11 @@ namespace CharacterDBApp.Engines
 
             return locations;
         }
+        /// <summary>
+        /// Gets all unique type names from the inputted character list
+        /// </summary>
+        /// <param name="characters">List of hcaracters you want the types from</param>
+        /// <returns>List of unique type names</returns>
         private List<string> GenerateTypesFromCharacters(List<Character> characters)
         {
             List<string> types = new List<string>();
@@ -69,6 +84,11 @@ namespace CharacterDBApp.Engines
 
             return types;
         }
+        /// <summary>
+        /// Creates character objects from the provided file
+        /// </summary>
+        /// <param name="file">File of character data</param>
+        /// <returns>list of type character</returns>
         private List<Character> GenerateCharacters(IFile file)
         {
             List<Character> characters = new List<Character>();
@@ -121,6 +141,12 @@ namespace CharacterDBApp.Engines
             }
             return characters;
         }
+        /// <summary>
+        /// Runs all sql commands for inserting records
+        /// </summary>
+        /// <param name="characters">List of character objects to be inputted</param>
+        /// <param name="types">List of type names to be inputted</param>
+        /// <param name="location">List of location names to be inputted</param>
         private void RunSQL(List<Character> characters, List<string> types, List<string> location)
         {
             foreach (string t in types)
@@ -138,6 +164,9 @@ namespace CharacterDBApp.Engines
                 cDAL.InsertCharacter(c);
             }
         }
+        /// <summary>
+        /// Generates the needed reports from the database
+        /// </summary>
         private void GenerateOutputFiles()
         {
             if (Directory.Exists("./Output") == false)
