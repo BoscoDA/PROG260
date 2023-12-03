@@ -1,0 +1,9 @@
+1. Make EC2 Web Server at aws.amazon.com.
+2. Default other than - Add Key Pair, and "Allow HTTPS" and "HTTP".
+3. Launch Instance.
+4. Use: "ssh -i "data-design-key-pair.pem" ec2-user@ec2-3-17-29-162.us-east-2.compute.amazonaws.com" in Powershell to lauch the server.
+5. Change security permission for the .pem key file to just be your user with full control and run command above again.
+6. Prepare LAMP: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2023.html | https://aws.amazon.com/what-is/lamp-stack/
+7. DB Gui: http://ec2-3-17-29-162.us-east-2.compute.amazonaws.com/phpMyAdmin/index.php?route=/&route=%2F
+8. Create PHP pages and FTPS to the server.
+9. /index.php?print-fruit, /index.php?add-fruit= ,/index.php?remove-fruit=
