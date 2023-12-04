@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Week8WebAPIInterface
+namespace Week8WebAPIInterface.Options
 {
     [Verb("remove", HelpText = "Removes a fruit from the database.")]
     public class RemoveOptions

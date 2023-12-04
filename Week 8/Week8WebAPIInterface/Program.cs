@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System;
 using CommandLine;
+using Week8WebAPIInterface.Options;
 
 namespace Week8WebAPIInterface
 {
