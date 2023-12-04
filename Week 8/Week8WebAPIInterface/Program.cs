@@ -42,7 +42,7 @@ namespace Week8WebAPIInterface
             //Arguments: Print all elements in db, add new item to db, remove item from db, help, exit
             //CallUrl("http://ec2-3-17-29-162.us-east-2.compute.amazonaws.com/index.php?add-fruit=banana");
         }
-
+        // Code from: https://www.c-sharpcorner.com/blogs/how-to-call-a-url-or-web-address-in-asp-net1
         static string CallUrl(string url)
         {
             WebRequest request = HttpWebRequest.Create(url);
