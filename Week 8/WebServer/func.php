@@ -8,6 +8,7 @@ class Helper
 
         $query = "INSERT INTO fruit(name) VALUES('".$fruit."') ";
         $result = mysqli_query($link,$query);
+        echo $result;
 
         $link->close();
     }
@@ -18,6 +19,7 @@ class Helper
         
         $query = "DELETE FROM fruit WHERE name = '".$fruit."' ";
         $result = mysqli_query($link,$query);
+        echo $result;
 
         $link->close();
     }
@@ -27,7 +29,8 @@ class Helper
         require 'conn.php';
         
         $query = "SELECT * FROM fruit";
-        if($result = mysqli_query($link,$query))
+        $result = mysqli_query($link,$query);
+        if($result == 1)
         {
             if($result->num_rows>0)
             {
@@ -38,6 +41,10 @@ class Helper
                     echo "\n";
                 }
             }
+        }
+        else
+        {
+            echo $result;
         }
 
         $link->close();
